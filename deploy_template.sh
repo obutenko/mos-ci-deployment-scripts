@@ -82,14 +82,16 @@ pip install -U pip
 
 # Check if fuel-qa folder exist
 if [ ! -d fuel-qa ]; then
-    git clone -b "${FUEL_QA_VER}" https://github.com/openstack/fuel-qa
+    git clone https://github.com/openstack/fuel-qa
+    cd fuel-qa && git checkout f7fedd27f05899e1dab3636b921554177a7255ec
 else
     pushd fuel-qa
     git clean -f -d -x
     git checkout -- *
-    git checkout "${FUEL_QA_VER}"
+    git checkout master
     git reset --hard
     git pull
+    git checkout f7fedd27f05899e1dab3636b921554177a7255ec
     popd
 fi
 
